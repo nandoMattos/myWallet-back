@@ -27,6 +27,6 @@ app.post("/sign-in", signIn);
 app.post("/sign-up", signUp);
 
 //
-app.get("/revenue", getRevenue);
+app.get("/", getRevenue);
 
 app.listen(5000);
