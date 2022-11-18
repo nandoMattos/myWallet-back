@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { signIn, signUp } from "./controllers/authController.js";
 import { getRevenue } from "./controllers/userController.js";
+import authRouter from "./routers/authRouter.js";
+import userRouter from "./routers/userRouter.js";
 dotenv.config();
 
 const mongoClient = new MongoClient(process.env.MONGO_URI);
@@ -21,12 +23,7 @@ export const COLLECTIONS = {
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-// Auth routes
-app.post("/sign-in", signIn);
-app.post("/sign-up", signUp);
-
-//
-app.get("/", getRevenue);
+app.use(authRouter);
+app.use(userRouter);
 
 app.listen(5000);
