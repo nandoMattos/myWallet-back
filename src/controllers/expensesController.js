@@ -2,10 +2,10 @@ import COLLECTIONS from "../database/db.js";
 const { EXPENSES } = COLLECTIONS;
 
 export async function postExpenses(req, res) {
-  const expense = req.expense;
+  const { description, value } = req.expenseOrIncome;
   const userId = req.userId;
   try {
-    await EXPENSES.insertOne({ userId, ...expense });
+    await EXPENSES.insertOne({ userId, description, value });
     res.sendStatus(201);
   } catch (err) {
     console.log(err);
