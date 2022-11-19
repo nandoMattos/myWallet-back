@@ -11,8 +11,7 @@ const db = mongoClient.db("myWallet");
 const COLLECTIONS = {
   USERS: db.collection("users"),
   SESSIONS: db.collection("sessions"),
-  EXPENSES: db.collection("expenses"),
-  INCOMES: db.collection("incomes"),
+  REVENUE: db.collection("revenues"),
 };
 
 export default COLLECTIONS;

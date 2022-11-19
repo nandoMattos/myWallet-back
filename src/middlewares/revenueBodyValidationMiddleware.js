@@ -2,9 +2,9 @@ import expenseSchema from "../schemas/expenseSchema.js";
 
 export async function revenueBodyValidation(req, res, next) {
   //description, value
-  const expenseOrIncome = req.body;
+  const revenue = req.body;
 
-  const validation = expenseSchema.validate(expenseOrIncome, {
+  const validation = expenseSchema.validate(revenue, {
     abortEarly: false,
   });
 
@@ -13,7 +13,7 @@ export async function revenueBodyValidation(req, res, next) {
     return;
   }
 
-  req.expenseOrIncome = expenseOrIncome;
+  req.revenue = revenue;
 
   next();
 }

@@ -27,11 +27,11 @@ export async function signInBodyValidation(req, res, next) {
       return;
     }
 
-    req.userId = registeredUser._id;
+    req.user = { name: registeredUser.name, userId: registeredUser._id };
+
+    next();
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
-
-  next();
 }

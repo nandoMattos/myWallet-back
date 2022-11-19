@@ -1,12 +1,19 @@
+import dayjs from "dayjs";
 import COLLECTIONS from "../database/db.js";
-const { INCOMES } = COLLECTIONS;
+const { REVENUE } = COLLECTIONS;
 
 export async function postIncome(req, res) {
+  const { description, value } = req.revenue;
   const userId = req.userId;
-  const { description, value } = req.expenseOrIncome;
 
   try {
-    await INCOMES.insertOne({ userId, description, value });
+    await REVENUE.insertOne({
+      userId,
+      description,
+      value,
+      type: "income",
+      date: dayjs().format("DD/MM"),
+    });
     res.sendStatus(201);
   } catch (err) {
     console.log(err);
