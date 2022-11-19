@@ -1,12 +1,10 @@
 import { Router } from "express";
-import {
-  getExpenses,
-  postExpenses,
-} from "../controllers/expensesController.js";
+import { postExpenses } from "../controllers/expensesController.js";
+import { expenseBodyValidation } from "../middlewares/expenseBodyValidationMiddleware.js";
+import { tokenValidation } from "../middlewares/tokenValidationMiddleware.js";
 
 const router = Router();
 
-router.get("/expenses", getExpenses);
-router.post("/expenses", postExpenses);
+router.post("/expenses", tokenValidation, expenseBodyValidation, postExpenses);
 
 export default router;
