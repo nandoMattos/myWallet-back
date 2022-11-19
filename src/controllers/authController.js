@@ -1,7 +1,8 @@
 import userSchema from "../schemas/userSchema.js";
 import bcrypt from "bcrypt";
-import { COLLECTIONS } from "../index.js";
 import { v4 as uuidV4 } from "uuid";
+import COLLECTIONS from "../database/db.js";
+const { USERS } = COLLECTIONS;
 
 export async function signIn(req, res) {
   const { email, password } = req.body;
@@ -18,11 +19,7 @@ export async function signIn(req, res) {
       return;
     }
 
-    const session = await COLLECTIONS.SESSIONS.findOne({ userId: user._id });
-    if (session) {
-      res.status(409).send({ message: "Usuário já logado." });
-      return;
-    }
+    await COLLECTIONS.SESSIONS.deleteOne({ userId: user._id });
 
     const token = uuidV4();
     await COLLECTIONS.SESSIONS.insertOne({ userId: user._id, token });
