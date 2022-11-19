@@ -11,8 +11,4 @@ app.use(authRouter);
 app.use(userRouter);
 app.use(expensesRouter);
 
-app.get("/teste", async (req, res) => {
-  res.send(await COLLECTIONS.EXPENSES.find().toArray());
-});
-
 app.listen(5000);

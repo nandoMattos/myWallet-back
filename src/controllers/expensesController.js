@@ -1,7 +1,6 @@
 import expenseSchema from "../schemas/expenseSchema.js";
 import COLLECTIONS from "../database/db.js";
 const { SESSIONS, EXPENSES } = COLLECTIONS;
-
 export async function getExpenses(req, res) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");

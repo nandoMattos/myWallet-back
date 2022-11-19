@@ -1,5 +1,5 @@
 import COLLECTIONS from "../database/db.js";
-const { SESSIONS, USERS } = COLLECTIONS;
+const { USERS, SESSIONS } = COLLECTIONS;
 
 export async function getRevenue(req, res) {
   const { authorization } = req.headers;
