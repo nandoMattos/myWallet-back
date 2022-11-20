@@ -13,4 +13,6 @@ app.use(revenueRouter);
 app.use(expensesRouter);
 app.use(incomesRouter);
 
-app.listen(5000);
+const port = process.env.PORT || 5000;
+
+app.listen(port);
