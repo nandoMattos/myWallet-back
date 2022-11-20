@@ -20,10 +20,10 @@ export async function signUpBodyValidation(req, res, next) {
     }
 
     req.user = userInput;
+
+    next();
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
-
-  next();
 }
